@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+     <div class="menu_settings">
+        <h1 class="logo">R<span>Backup</span></h1>
+        <ul>
+            <li><a href="#">HOME</a></li>
+            
+            <li>
+                <a href="#">SETTINGS <i class="fas fa-caret-down"></i></a>
+            <div class="dropdown_menu">
+                <ul>
+                    <li><a href="#">MAIN</a></li>
+                    <li><a href="#">ENCRYPT</a></li>
+                </ul>
+            </div>
+            </li>
+        </ul>
+</div>
+<!-- <button class="button" id="addTargetButton">ADD TARGET</button> 
+<div class="form">
+
+    <form action="#" onsubmit="return false;">
+        <label for="name">Name</label>
+        <input type="text" placeholder="name" >
+        <br>
+        <label for="SOURCES">SOURCES</label>
+        <input type="text" placeholder="SOURCES" >
+        <br>
+        <label for="EXCLUDE">EXCLUDE</label>
+        <input type="text" placeholder="EXCLUDE" >
+        <br>
+        <label for="ENCRYPT">ENCRYPT</label>
+        <input type="text" placeholder="ENCRYPT" >
+        <br>
+        <label for="COMPRESS">COMPRESS</label>
+        <input type="text" placeholder="COMPRESS" >
+        <br>
+<button class="btn btn-primary" type="submit" >Submit</button>
+<button class="btn btn-primary" type="reset" >Reset</button>
+
+    </form>
+</div>   -->
+<!-- <form id="targetForm">
+    <div class="container">
+        <h1 class="text">TARGET</h1>
+   <div class="data"> 
+    <li>NAME:<input type="text" required></li>
+    <li>SOURCES:<input type="text" required></li>
+    <li>EXCLUDE:<input type="text" required></li>
+    <li>ENCRYPT:<input type="text" required></li>
+    <li>COMPRESS:<input type="text" required></li>
+</div>
+   <div class="btn">
+    <button type="submit" id="submitButton">SUBMIT</button>
+</div>
+   </div>
+</form> -->
+ <!-- The Modal -->
+ <!-- <div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Do you want to add another target?</p>
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+    </div>
+</div> -->
+<!-- 
+<script>
+    var modal = document.getElementById("myModal");
+
+    var submitButton = document.getElementById("addTargetButton");
+
+    var closeButton = document.getElementsByClassName("close")[0];
+
+    addTargetButton.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    closeButton.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    document.getElementById("yesButton").onclick = function () {
+        modal.style.display = "none";
+        document.getElementById("targetForm").reset();
+    };
+
+    document.getElementById("noButton").onclick = function () {
+        modal.style.display = "none";
+    };
+</script> -->
+
+<div class="form-container" id="formContainer" style="display: none;">
+    <div class="form">
+        <form action="#" onsubmit="return false;">
+            <label for="name">Name</label>
+            <input type="text" placeholder="name">
+            <br>
+            <label for="SOURCES">SOURCES</label>
+            <input type="text" placeholder="SOURCES">
+            <br>
+            <label for="EXCLUDE">EXCLUDE</label>
+            <input type="text" placeholder="EXCLUDE">
+            <br>
+            <label for="ENCRYPT">ENCRYPT</label>
+            <input type="text" placeholder="ENCRYPT">
+            <br>
+            <label for="COMPRESS">COMPRESS</label>
+            <input type="text" placeholder="COMPRESS">
+            <br>
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-primary" type="reset">Reset</button>
+        </form>
+    </div>
+</div>
+
+<div id="myModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Do you want to add more targets?</p>
+        <button class="btn btn-primary" id="yesButton">Yes</button>
+        <button class="btn btn-primary" id="noButton">No</button>
+    </div>
+</div>
+<div id="dataContainer" style="display: none;">
+    <!-- Data will be displayed here -->
+</div>
+
+<button class="button" id="addTargetButton">ADD TARGET</button>
+
+<script>
+    var addTargetButton = document.getElementById("addTargetButton");
+    var formContainer = document.getElementById("formContainer");
+    var modal = document.getElementById("myModal");
+    var closeButton = document.getElementsByClassName("close")[0];
+    var yesButton = document.getElementById("yesButton");
+    var noButton = document.getElementById("noButton");
+    var dataContainer = document.getElementById("dataContainer");
+    var targetsData = []; // Array to store submitted targets
+
+    addTargetButton.onclick = function () {
+        formContainer.style.display = "block";
+        dataContainer.style.display = "none"; // Hide the data container
+    };
+
+    // Handle form submission
+    var form = document.querySelector(".form form");
+    form.onsubmit = function () {
+        // Show the modal after form submission
+        modal.style.display = "block";
+    };
+
+    closeButton.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    yesButton.onclick = function () {
+        // Get the form values and add to the targetsData array
+        var formData = {
+            name: form.elements.name.value,
+            sources: form.elements.SOURCES.value,
+            exclude: form.elements.EXCLUDE.value,
+            encrypt: form.elements.ENCRYPT.value,
+            compress: form.elements.COMPRESS.value,
+        };
+        targetsData.push(formData);
+
+        form.reset();
+        formContainer.style.display = "block";
+        modal.style.display = "none";
+    };
+
+    noButton.onclick = function () {
+        modal.style.display = "none";
+        formContainer.style.display = "none";
+
+        // Show the data container and display the saved targets
+        dataContainer.style.display = "block";
+        var dataHTML = "<h2>Saved Targets</h2>";
+        if (targetsData.length > 0) {
+            dataHTML += "<ul>";
+            targetsData.forEach(function (target) {
+                dataHTML += "<li>Name: " + target.name + "</li>";
+                dataHTML += "<li>Sources: " + target.sources + "</li>";
+                dataHTML += "<li>Exclude: " + target.exclude + "</li>";
+                dataHTML += "<li>Encrypt: " + target.encrypt + "</li>";
+                dataHTML += "<li>Compress: " + target.compress + "</li>";
+                dataHTML += "<br>";
+            });
+            dataHTML += "</ul>";
+        } else {
+            dataHTML += "<p>No targets saved yet.</p>";
+        }
+        dataContainer.innerHTML = dataHTML;
+    };
+</script>
+
+
+
+</body>
+</html>
